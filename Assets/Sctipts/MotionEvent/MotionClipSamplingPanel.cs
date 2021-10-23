@@ -48,5 +48,6 @@ public class MotionClipSamplingPanel : MonoBehaviour
 
         samplingSeekbar.minValue = 0;
         samplingSeekbar.maxValue = clip.length;
+        samplingSeekbar.value    = 0;
     }
 }
