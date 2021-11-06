@@ -15,11 +15,16 @@ public class MotionEventTool : MonoBehaviour
     [SerializeField]
     private MotionClipSamplingPanel samplingPanel;
 
+    [SerializeField]
+    private MotionEventPanel eventPanel;
+
     private AnimationClip[] _motionClips;
 
     private GameObject _samplingActor;
 
     private AnimationClip _currentClip;
+
+    public float CurrentFrame { get; private set; } = 0;
 
     private void Start()
     {
@@ -55,15 +60,19 @@ public class MotionEventTool : MonoBehaviour
             if (clipName.Equals("Idle"))
             {
                 _currentClip = clip;
+
                 PlaySamplingAnimation(0);
                 samplingPanel.SetSamplingClip(_currentClip);
+                eventPanel.Setup(clip, this);
             }
 
             mli.Setup(clipName, () =>
             {
                 _currentClip = clip;
+
                 PlaySamplingAnimation(0);
                 samplingPanel.SetSamplingClip(_currentClip);
+                eventPanel.Setup(clip, this);
             });
         }
 
